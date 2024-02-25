@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block title %}Alham - Add{% endblock %}
+ {% block head %}
+<style>
+  th input[type="checkbox"] {
+    width: 40px;
+    height: 40px;
+  }
+  
+  input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+  }
+
+  input[type="number"] {
+    padding: 8px 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 45%;
+    font-weight: bold;
+    font-size: large;
+  }
+
+  input[type="text"] {
+    font-size: large;
+    color: #2b6961;
+    font-weight: bold;
+    padding: 8px 20px;
+    width: 85%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  input[type="submit"] {
+    padding: 8px 20px;
+    background-color: #4ec9b0;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a396;
+  }
+
+  #status_div {
+    width: 10px;
+    float: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .status {
+    margin-bottom: 10px;
+  }
+
+  #hint {
+    color: #327c74;
+  }
+</style>
+{% endblock %} {% block body %}
+
+<h1>Add Movie</h1>
+
+<table>
+  <tr>
+    <th id="movie">Movie Name</th>
+    <th id="year">Year</th>
+    <th id="tv">TV-Series</th>
+  </tr>
+  <form method="GET" action="/add/data">
+    <tr>
+      <th> <input id="td_movie" type="text" name="movie_name" placeholder="Movie Name..." required autofocus /> </th>
+      <th> <input type="number" name="year" placeholder="Year..." min="0000" max="2030" pattern="0000|18\d{2}|19\d{2}|20[0-2]\d|2030" required /> </th>
+      <th> <input id="td_series" type="checkbox" name="tv_series" value="true" /> </th>
+    </tr>
+    <tr>
+      <td colspan="3" id="hint">Enter `0000` if don't know the year.</td>
+    </tr>
+    <tr>
+      <div id="status_div" class="status_div">
+        <td colspan="3">
+          <input class="status" id="td_watched" type="checkbox" name="watched" value="true" />
+          <label class="status" for="td_watched">Watched</label>
+          <input class="status" id="td_downloaded" type="checkbox" name="downloaded" value="true" />
+          <label class="status" for="td_downloaded">Downloaded</label>
+        </td>
+      </div>
+    </tr>
+    <tr>
+      <th colspan="3"><input type="submit" value="Update Movie" /></th>
+    </tr>
+  </form>
+</table>
+<br>
+<br>
+<br>
+
+<img src="{{ url_for('static', filename="img/add.png") }}" alt="image">
+
+{% endblock %}

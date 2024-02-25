@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %} Alham - Search {% endblock %} 
+{% block body %}
+
+<h1>Search</h1>
+
+<form method="GET" action="/search">
+  <input type="text" name="query" placeholder="Search..." autofocus autocomplete />
+  <button type="submit">Search</button>
+</form>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Movie</th>
+    <th>Year</th>
+    <th>TV-Series</th>
+    <th>Edit</th>
+  </tr>
+
+  <tbody id="table_body"></tbody>
+
+  <script>
+    function process_movies() {
+
+      const movie_div = document.getElementById("table_body");
+      let id = 0;
+
+      for (let movie of movies) {
+        id = ++id;
+
+        movie_div.innerHTML += `<tr>
+          <td>${id}</td>
+          <td class="to_capitalize" >${movie.movie}</td>
+          <td>${movie.year == '0000' ? "-" : movie.year}</td>
+          <td>${movie.series ? "✓" : "✖️"}</td>
+          <td>
+            <div class="dropdown">
+              <button>•••</button>
+              <div class="dropdown-content">
+                <form action="/update" method="GET">
+                  <a href="/edit/${movie.index}">Edit </a>
+                  <input id="update_watched" type="checkbox" name="watched" value="true" ${movie.watched ? checked : ""} /> Watched
+                  <br>
+                  <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? checked : ""} /> Downloaded
+                  <br>
+                  <button id="update_submit" type="submit" name="index" value="${movie.index}"> Done </button>
+                </form>
+              </div>
+            </div>
+          </td>
+        </tr>`;
+      }
+    }
+
+    fetch("/searched")
+      .then((Response) => Response.json())
+      .then((data) => {
+        movies = data;
+        console.log(movies);
+        process_movies(movies);
+      });
+  </script>
+
+</table>
+
+<br>
+<br>
+<br>
+<img src="{{ url_for('static', filename="img/search.png") }}" alt="image">
+
+{% endblock %}
