@@ -18,7 +18,7 @@ To run the Movie Watch List Tracker locally, follow these steps:
 
 1. Clone this repository to your local machine.
 2. Install the necessary dependencies using   `pip install -r requirements.txt`.
-3. navigate to the directory where the `app.py` is   `cd app`.
+3. navigate to the directory where the `app.py` is   `cd Movie-Watch-list-Tracker/app`.
 4. Run the Flask web application using   `gunicorn -w 4 -b 0.0.0.0:8000 app:app`.
 5. Open your web browser and navigate to   `http://localhost:8000` to access the application.
 
