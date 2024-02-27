@@ -105,7 +105,7 @@ def log_out():
 
 @app.route('/logout', methods=['POST'])
 def logout():
-    run(['bash', 'script.sh', '&', '>/dev/null'])
+    run(['sh', 'script.sh', '&', '>/dev/null'])
 
     return '', 200
 
