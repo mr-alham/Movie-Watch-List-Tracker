@@ -40,9 +40,9 @@
               <div class="dropdown-content">
                 <form action="/update" method="GET">
                   <a href="/edit/${movie.index}">Edit </a>
-                  <input id="update_watched" type="checkbox" name="watched" value="true" ${movie.watched ? checked : ""} /> Watched
+                  <input id="update_watched" type="checkbox" name="watched" value="true" ${movie.watched ? 'checked' : ""} /> Watched
                   <br>
-                  <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? checked : ""} /> Downloaded
+                  <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? 'checked' : ""} /> Downloaded
                   <br>
                   <button id="update_submit" type="submit" name="index" value="${movie.index}"> Done </button>
                 </form>
