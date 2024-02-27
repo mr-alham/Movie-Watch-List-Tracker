@@ -1,8 +1,12 @@
 from json import dump, load, JSONDecodeError
 from re import compile, IGNORECASE, findall
+from os.path import exists
 from flask import request
 
 data_file = 'data/movies.json'
+if not exists(data_file):
+    with open(data_file, 'w'):
+        pass
 
 def save_movies(movies: list):
     '''saves the movie dict on the json file'''
