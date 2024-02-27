@@ -2,6 +2,8 @@ from json import dump, load, JSONDecodeError
 from re import compile, IGNORECASE, findall
 from flask import request
 
+data_file = 'movies.json'
+
 def save_movies(movies: list):
     '''saves the movie dict on the json file'''
 
@@ -11,14 +13,14 @@ def save_movies(movies: list):
 
     movies = {"movies": movies}
 
-    with open('movies.json', 'w') as file:
+    with open(data_file, 'w') as file:
         dump(movies, file, indent=1)
 
 
 def load_movies() -> list[dict]:
     '''loads saved movies on the file to the memory'''
     try:
-        with open('movies.json', 'r') as file:
+        with open(data_file, 'r') as file:
          movies = load(file)
         return movies["movies"]
     
