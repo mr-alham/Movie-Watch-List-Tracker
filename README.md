@@ -29,6 +29,18 @@ To run the Movie Watch List Tracker locally, follow these steps:
 - **Marking as Watched/Downloaded**: When editing a movie, you can check the corresponding checkboxes to mark it as watched or downloaded.
 - **Searching for Movies**: Use the search bar on the homepage to search for movies by title or other criteria.
 
+## Docker
+
+- **Build the Dcoker Image**:
+    ```bash
+    docker build -t movie_watch_list .
+    ```
+
+- **Run the Docker Image as a Container**:
+    ```bash
+    docker run --name movie_watch_list -p 8000:8000 -d movie_watch_list
+    ```
+
 ## Contributing
 
 Contributions to Movie Watch List Tracker are welcome! If you'd like to contribute, please follow these steps:
