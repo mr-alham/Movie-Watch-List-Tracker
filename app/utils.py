@@ -2,7 +2,7 @@ from json import dump, load, JSONDecodeError
 from re import compile, IGNORECASE, findall
 from flask import request
 
-data_file = 'movies.json'
+data_file = 'data/movies.json'
 
 def save_movies(movies: list):
     '''saves the movie dict on the json file'''
