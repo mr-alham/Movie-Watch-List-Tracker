@@ -8,8 +8,8 @@ Movie Watch List Tracker is a simple web application designed to help users mana
 
 - **Add Movies**: Users can add new movies to their watchlist, providing details such as the movie name, release year, and whether it is a TV series.
 - **Edit Movies**: Existing movies can be edited to update their details, including the movie name, year, and series status.
-- **Mark as Watched/Downloaded**: Users can mark movies as watched or downloaded, helping them keep track of their viewing progress.
-- **Search Functionality**: The application includes a search feature that allows users to quickly find specific movies in their watchlist.
+- **Label Movies**: Users can mark movies as watched or downloaded, helping them keep track of their viewing progress.
+- **Search Movies**: The application includes a search feature that allows users to quickly find movies by year or by TV-Series in their watchlist.
 - **User Interface**: The project provides a clean and intuitive user interface for easy navigation and management of the watchlist.
 
 ## Getting Started
@@ -24,10 +24,10 @@ To run the Movie Watch List Tracker locally, follow these steps:
 
 ## Usage
 
-- **Adding Movies**: Click on the "Add a Movie" option in the header and fill out the form with the movie details.
-- **Editing Movies**: Navigate to the movie you want to edit and click on the "Edit" option. Modify the details and click "Edit Movie."
-- **Marking as Watched/Downloaded**: When editing a movie, you can check the corresponding checkboxes to mark it as watched or downloaded.
-- **Searching for Movies**: Use the search bar on the homepage to search for movies by title or other criteria.
+- **To add a Movie**: Click on the "Add a Movie" option in the header and fill out the text boxes with the movie details.
+- **To Edit a  Movie**: Navigate to the movie you want to edit and click on '•••' and click the "Edit" option. Modify the details and click "Edit Movie."
+- **To Label Watched or Downloaded Movies**: Navigate to the movie which needs to label and click on '•••' and select checkboxes as you wish and click 'Done' to save.
+- **To Search for a Movies**: Use the search bar on the homepage to search movies by title or by the year.
 
 ## Docker
 
@@ -40,7 +40,31 @@ To run the Movie Watch List Tracker locally, follow these steps:
     ```bash
     docker run --name movie_watch_list -p 8000:8000 -d movie_watch_list
     ```
+    
+***OR***
 
+- **Pull the Image and run the Image:**
+  ```bash
+  docker pull mralham/movie_watch_list:latest
+  ```
+  ```bash
+  docker run --name movie_watch_list \
+  -v movie_data:/app/data \
+  -p 80:80 \
+  -d mralham/movie_watch_list
+  ```
+
+***OR***
+
+- **Run the Image directly:**
+  ```bash
+  docker run --name movie_watch_list \
+  -v movie_data:/app/data \
+  -p 80:80 \
+  -d mralham/movie_watch_list
+  ```
+  - Then access the website using `http://localhost` OR `http://127.0.0.1`
+  - If the port is already in use replace `host port` with a desired port number as `<host port>:80` in `-p 80:80`.
 ## Contributing
 
 Contributions to Movie Watch List Tracker are welcome! If you'd like to contribute, please follow these steps:
