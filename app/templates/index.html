@@ -19,8 +19,8 @@
     for (let movie of movies) {
       id = ++id;
 
-      movie.watched ? (label_w = `<img class="label_pic" alt="Watched" src="{{ url_for('static',filename='img/watched.png') }}">`): (label_w = "  ");
-      movie.downloaded ? (label_d = `<img class="label_pic" alt="Downloaded" src="{{ url_for('static',filename='img/downloaded.png') }}">`) : (label_d = "  ");
+      movie.watched ? (label_w = `<img class="label_pic" alt="Watched" src="{{ url_for('static',filename='img/watched.png') }}" title="watched" >`): (label_w = "  ");
+      movie.downloaded ? (label_d = `<img class="label_pic" alt="Downloaded" src="{{ url_for('static',filename='img/downloaded.png') }}" title="Downloaded" >`) : (label_d = "  ");
 
       showMoviesDiv.innerHTML += `<tr>
             <td id="index_td_id" class="to_capitalize" >${id}</td>
@@ -137,8 +137,8 @@
     <th id="th_id">#</th>
     <th id="th_movie">Movie</th>
     <th id="th_labels">Labels</th>
-    <th id="th_year">Year</th>
-    <th id="th_tv">TV-Series</th>
+    <th id="th_year" title="Sort by Year" >Year</th>
+    <th id="th_tv" title="Sort by whether TV-Series or Not TV-Series" >TV-Series</th>
   </tr>
   <tbody id="show_movies"></tbody>
 </table>
