@@ -1,0 +1,14 @@
+{
+ "movies": [
+  {
+   "index": 100,
+   "movie": "Test movie one",
+   "year": "2020",
+   "series": true,
+   "watched": false,
+   "downloaded": true,
+   "upcoming": true,
+   "upcoming_notes": "some informative texts."
+  }
+ ]
+}

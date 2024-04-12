@@ -24,9 +24,9 @@
 
       showMoviesDiv.innerHTML += `<tr>
             <td id="index_td_id" class="to_capitalize" >${id}</td>
-            <td id="index_td_movie" class="to_capitalize" >${movie.movie}</td>
+            <td id="index_td_movie" class="to_capitalize" title="${movie.upcoming_notes ? movie.upcoming_notes : ""}" >${movie.movie}</td>
             <td id="index_td_tv" >${label_w} ${label_d}</td>
-            <td id="index_td_label" class="to_capitalize" >${movie.year == '0000' ? "-" : movie.year}</td>
+            <td id="index_td_label" class="to_capitalize" >${movie.year == '0000' ? "-" : movie.year}${movie.upcoming ? " -" :" "}</td>
             <td id="index_td_year" class="to_capitalize" >${movie.series ? "✓" : "✖️"}</td>
             <td id="index_td_dropdown">
                 <div class="dropdown">
@@ -40,6 +40,8 @@
                                 <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? "checked" : ""} />
                                 Downloaded
                                 <br />
+                                <input type="checkbox" name="upcoming" value="true" ${movie.upcoming ? "checked" : ""} />
+                                Upcoming
                                 <button id="update_submit" type="submit" name="index" value="${movie.index}" >Done</button>
                             </form>
                         </div>

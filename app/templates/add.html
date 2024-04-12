@@ -58,6 +58,14 @@
   #hint {
     color: #327c74;
   }
+
+  #upcoming {
+    float: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
 </style>
 {% endblock %} {% block body %}
 
@@ -75,6 +83,21 @@
       <th> <input type="number" name="year" placeholder="Year..." min="0000" max="2030" pattern="0000|18\d{2}|19\d{2}|20[0-2]\d|2030" required /> </th>
       <th> <input id="td_series" type="checkbox" name="tv_series" value="true" /> </th>
     </tr>
+
+    <tr id="upcoming" style="display: none;">
+      <td colspan="3" style="display: grid; grid-template-columns: 1fr auto 1fr; grid-gap: 2px "> 
+        <input id="upcoming_checkbox" type="checkbox" name="upcoming" value="true">
+        <label for="upcoming_checkbox">Upcoming releases</label>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3 ">
+      <label for="upcoming_notes">Notes</label>
+      <textarea name="upcoming_notes" id="upcoming_notes" cols="30" rows="3" title="Details about movie/series such as downloaded series/years."></textarea>
+      </td>
+    </tr>
+
     <tr>
       <td colspan="3" id="hint">Enter `0000` if don't know the year.</td>
     </tr>
@@ -98,5 +121,21 @@
 <br>
 
 <img src="{{ url_for('static', filename="img/add.png") }}" alt="image">
+
+<script>
+  const series = document.getElementById('td_series');
+  const upcoming_element = document.getElementById('upcoming');
+  // const upcoming_label = document.getElementById('upcoming_label');
+
+  series.addEventListener("change", function() {
+    if (this.checked) {
+      upcoming_element.style.display = "block";
+      // upcoming_label.style.display = "block";
+    } else {
+      upcoming_element.style.display = "none";
+    }
+  })
+
+</script>
 
 {% endblock %}

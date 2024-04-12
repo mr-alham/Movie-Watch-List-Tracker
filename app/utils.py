@@ -45,11 +45,17 @@ def load_movies() -> list[dict]:
 
 def load_from_form() -> dict:
     '''extracts the data from the web form and send the extracted data as a dict'''
+
     args = request.args.to_dict()
+    
+    index = True if 'index' in args else False
+    movie = args.get('movie_name')
+    year = args.get('year')
     series = True if 'tv_series' in args else False
-    index = True if 'index' in args else False 
     watched = True if 'watched' in args else False 
     downloaded = True if 'downloaded' in args else False 
+    upcoming = True if 'upcoming' in args else False
+    upcoming_notes = args.get('upcoming_notes') if 'upcoming_notes' in args else False
 
     if index:
         index = int(args['index'])
@@ -58,11 +64,13 @@ def load_from_form() -> dict:
 
     add_new_movie = {
         "index": index,
-        "movie": args.get('movie_name'),
-        "year": args.get('year'),
+        "movie": movie,
+        "year": year,
         "series": series,
         "watched": watched,
         "downloaded": downloaded,
+        "upcoming": upcoming,
+        "upcoming_notes": upcoming_notes,
     }
 
     return add_new_movie

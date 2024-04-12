@@ -6,6 +6,7 @@ from subprocess import run
 
 app = Flask(__name__)
 
+#TODO add a filtering tag to filter movies by upcoming releases
 
 @app.route('/')
 def index():
@@ -27,12 +28,14 @@ def update():
 
     downloaded = True if 'downloaded' in args else False
     watched = True if 'watched' in args else False
+    upcoming = True if 'upcoming' in args else False
 
     movies = load_movies()
     for movie in movies:
         if movie['index'] == int(args['index']):
             movie['downloaded'] = downloaded
             movie['watched'] = watched
+            movie['upcoming'] = upcoming
 
     save_movies(movies)
 
