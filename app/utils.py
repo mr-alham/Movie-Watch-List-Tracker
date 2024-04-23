@@ -32,7 +32,8 @@ def load_movies() -> list[dict]:
 
     except JSONDecodeError:
         return [
-            {"movie": "-",
+            {
+                "movie": "-",
                  "year": "-",
                  "series": False,
                  "downloaded": False,
