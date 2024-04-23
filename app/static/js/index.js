@@ -5,7 +5,7 @@ let current_list = [];
 let order = true;
 
 function process_movies(movies) {
-    const showMoviesDiv = document.getElementById("show_movies");
+    const showMoviesDiv = document.getElementById('show_movies');
     showMoviesDiv.innerHTML = '';
     let id = 0;
 
