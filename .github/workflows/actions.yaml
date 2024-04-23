@@ -13,7 +13,9 @@ jobs:
 
       - name: Install Super-Linter
         uses: github/super-linter@v4
-
+        env:
+          DEFAULT_BRANCH: main
+          FILTER_REGEX_EXCLUDE: '\.(html|js|css)$'
       - name: Run Super-Linter
         run: super-linter --fail-on-errors --format summary
 ...

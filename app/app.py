@@ -1,7 +1,7 @@
 #!/bin/env python3
 
-from flask import Flask, jsonify, redirect, render_template,  request
-from utils import load_from_form,load_movies, save_movies,  search
+from flask import Flask, jsonify, redirect, render_template, request
+from utils import load_from_form, load_movies, save_movies, search
 from subprocess import run
 
 app = Flask(__name__)
@@ -55,7 +55,7 @@ def edit(index):
 
 @app.route("/edit/data/<int:index>")
 def edit_data(index):
-    """retrieve the edited movie from the web page and save it """
+    """retrieve the edited movie from the web page and save it"""
     updated_movie = load_from_form()
     movies = load_movies()
 
@@ -80,9 +80,10 @@ def add_data():
 
     new_movie = load_from_form()
     movies = load_movies()
-    new_movie["index"] = 100 if len(
-        movies) == 1 and movies[0]["movie"] == "-" else len(movies)+100
-
+    new_movie["index"] = (
+        100 if len(movies) == 1 and movies[0]["movie"] == "-" else len(movies)+100
+    )
+    
     movies.append(new_movie)
     save_movies(movies)
 

@@ -1,6 +1,6 @@
 from json import JSONDecodeError, dump, load
 from os.path import exists
-from re import IGNORECASE, compile,  findall
+from re import IGNORECASE, compile, findall
 
 from flask import request
 
@@ -31,11 +31,14 @@ def load_movies() -> list[dict]:
         return movies["movies"]
 
     except JSONDecodeError:
-        return [{"movie": "-",
+        return [
+            {"movie": "-",
                  "year": "-",
                  "series": False,
                  "downloaded": False,
-                 "watched": False}]
+                 "watched": False
+            }
+        ]
 
     except FileNotFoundError:
         print("the JSON file not found")
@@ -57,8 +60,7 @@ def load_from_form() -> dict:
     watched = True if "watched" in args else False
     downloaded = True if "downloaded" in args else False
     upcoming = True if "upcoming" in args else False
-    upcoming_notes = args.get(
-        "upcoming_notes") if "upcoming_notes" in args else False
+    upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
     if index:
         index = int(args["index"])
@@ -80,7 +82,7 @@ def load_from_form() -> dict:
 
 
 def search(query: str) -> list:
-    """handles the search """
+    """handles the search"""
     movies = load_movies()
     pattern = compile(query, IGNORECASE)
     year_query = findall(r"\b\d{4}\b", query)
