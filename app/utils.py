@@ -8,6 +8,7 @@ if not exists(data_file):
     with open(data_file, 'w'):
         pass
 
+
 def save_movies(movies: list):
     '''saves the movie dict on the json file'''
 
@@ -25,16 +26,16 @@ def load_movies() -> list[dict]:
     '''loads saved movies on the file to the memory'''
     try:
         with open(data_file, 'r') as file:
-         movies = load(file)
+            movies = load(file)
         return movies["movies"]
-    
+
     except JSONDecodeError:
         return [{"movie": '-',
                  "year": '-',
                  "series": False,
                  "downloaded": False,
                  "watched": False}]
-    
+
     except FileNotFoundError:
         print('the JSON file not found')
         return 500
@@ -43,19 +44,20 @@ def load_movies() -> list[dict]:
         print(e)
         return 500
 
+
 def load_from_form() -> dict:
     '''extracts the data from the web form and send the extracted data as a dict'''
 
     args = request.args.to_dict()
-    
     index = True if 'index' in args else False
     movie = args.get('movie_name')
     year = args.get('year')
     series = True if 'tv_series' in args else False
-    watched = True if 'watched' in args else False 
-    downloaded = True if 'downloaded' in args else False 
+    watched = True if 'watched' in args else False
+    downloaded = True if 'downloaded' in args else False
     upcoming = True if 'upcoming' in args else False
-    upcoming_notes = args.get('upcoming_notes') if 'upcoming_notes' in args else False
+    upcoming_notes = args.get(
+        'upcoming_notes') if 'upcoming_notes' in args else False
 
     if index:
         index = int(args['index'])
@@ -75,7 +77,8 @@ def load_from_form() -> dict:
 
     return add_new_movie
 
-def search(query:str) -> list:
+
+def search(query: str) -> list:
     '''handles the search '''
     movies = load_movies()
     pattern = compile(query, IGNORECASE)

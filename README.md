@@ -40,7 +40,7 @@ To run the Movie Watch List Tracker locally, follow these steps:
     ```bash
     docker run --name movie_watch_list -p 8000:8000 -d movie_watch_list
     ```
-    
+
 ***OR***
 
 - **Pull the Image and run the Image:**
@@ -63,7 +63,7 @@ To run the Movie Watch List Tracker locally, follow these steps:
   -p 80:80 \
   -d mralham/movie_watch_list
   ```
-  - Then access the website using `http://localhost` OR `http://127.0.0.1`
+  - Then access the site using `http://localhost` OR `http://127.0.0.1`
   - If the port is already in use replace `host port` with a desired port number as `<host port>:80` in `-p 80:80`.
 ## Contributing
 

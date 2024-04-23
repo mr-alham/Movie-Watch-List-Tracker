@@ -6,7 +6,8 @@ from subprocess import run
 
 app = Flask(__name__)
 
-#TODO add a filtering tag to filter movies by upcoming releases
+# TODO add a filtering tag to filter movies by upcoming releases
+
 
 @app.route('/')
 def index():
@@ -94,7 +95,7 @@ def search_query():
     global searched_movie_list
     query = request.args.get('query')
     searched_movie_list = search(query)  # dict of movie
-    
+
     return render_template('search.html')
 
 
@@ -102,9 +103,11 @@ def search_query():
 def searched_movies():
     return jsonify(searched_movie_list)
 
+
 @app.route('/log_out', methods=['POST'])
 def log_out():
-   return render_template('log_out.html')
+    return render_template('log_out.html')
+
 
 @app.route('/logout', methods=['POST'])
 def logout():
