@@ -37,17 +37,17 @@ def load_movies() -> list[dict]:
                 "year": "-",
                 "series": False,
                 "downloaded": False,
-                "watched": False
+                "watched": False,
             }
         ]
 
     except FileNotFoundError:
         print("the JSON file not found")
-        return 500
+        return 500 # type: ignore
 
     except Exception as e:
         print(e)
-        return 500
+        return 500 # type: ignore
 
 
 def load_from_form() -> dict:
@@ -64,9 +64,9 @@ def load_from_form() -> dict:
     upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
     if index:
-        index = int(args["index"])
+        index = int(args["index"]) # type: ignore
     else:
-        index = 100
+        index = 100 # type: ignore
 
     add_new_movie = {
         "index": index,
