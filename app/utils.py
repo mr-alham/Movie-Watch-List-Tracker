@@ -17,7 +17,7 @@ def save_movies(movies: list):
         if movie["movie"] == "-":
             movies.pop(i)
 
-    movies = {"movies": movies}
+    movies = {"movies": movies}  # type: ignore
 
     with open(data_file, "w") as file:
         dump(movies, file, indent=1)
@@ -43,11 +43,11 @@ def load_movies() -> list[dict]:
 
     except FileNotFoundError:
         print("the JSON file not found")
-        return 500 # type: ignore
+        return 500  # type: ignore
 
     except Exception as e:
         print(e)
-        return 500 # type: ignore
+        return 500  # type: ignore
 
 
 def load_from_form() -> dict:
@@ -64,9 +64,9 @@ def load_from_form() -> dict:
     upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
     if index:
-        index = int(args["index"]) # type: ignore
+        index = int(args["index"])  # type: ignore
     else:
-        index = 100 # type: ignore
+        index = 100  # type: ignore
 
     add_new_movie = {
         "index": index,
