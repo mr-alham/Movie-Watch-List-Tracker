@@ -34,10 +34,10 @@ def load_movies() -> list[dict]:
         return [
             {
                 "movie": "-",
-                 "year": "-",
-                 "series": False,
-                 "downloaded": False,
-                 "watched": False
+                "year": "-",
+                "series": False,
+                "downloaded": False,
+                "watched": False
             }
         ]
 
