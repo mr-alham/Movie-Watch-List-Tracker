@@ -4,16 +4,16 @@ name: Movie Watch List Tracker
 on: push
 
 jobs:
-  lint:
-    name: Lint the Codebase
+  super-linter:
     runs-on: ubuntu-latest
 
     steps:
-      -name: checkout the repository
-       uses: actions/checkout@v3
+      - name: checkout the repository
+        uses: actions/checkout@v3
 
-     -name: Run Super-Linter
-      uses: github/super-linter@v4
-      env:
-        DEFAULT_BRANCH: main
+      - name: Install Super-Linter
+        uses: github/super-linter@v4
+
+      - name: Run Super-Linter
+        run: super-linter --fail-on-errors --format summary
 ...
