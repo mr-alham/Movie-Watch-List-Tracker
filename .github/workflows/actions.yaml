@@ -17,7 +17,4 @@ jobs:
           DEFAULT_BRANCH: main
           FILTER_REGEX_EXCLUDE: 'dict|\.(html|js|css)$'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run Super-Linter
-        run: super-linter --fail-on-errors --format summary
 ...
