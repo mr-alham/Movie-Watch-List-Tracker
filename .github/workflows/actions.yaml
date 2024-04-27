@@ -7,7 +7,9 @@ on:
       main
   
   pull_request:
-    
+    branches:
+      main
+
 jobs:
   super-linter:
     runs-on: ubuntu-latest
