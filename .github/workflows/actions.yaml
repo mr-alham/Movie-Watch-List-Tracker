@@ -1,8 +1,13 @@
 ---
 name: Movie Watch List Tracker
 
-on: push
-
+on:
+  push:
+    branches:
+      main
+  
+  pull_request:
+    
 jobs:
   super-linter:
     runs-on: ubuntu-latest
