@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Super-Linter
-        uses: github/super-linter@v4
+        uses: github/super-linter@v6
         env:
           DEFAULT_BRANCH: main
           # FILTER_REGEX_EXCLUDE: 'dict|\.(html|js|css)$'
