@@ -7,7 +7,8 @@ from utils import load_from_form, load_movies, save_movies, search
 
 app = Flask(__name__)
 
-# TODO add a filtering tag to filter movies by upcoming releases
+# TODO add a filtering tag to filter movies by future releases
+# TODO add a button to delete added Movies
 
 
 @app.route("/")
@@ -20,7 +21,12 @@ def index():
 def movies() -> dict:
     """returns the list of movies as a json object"""
     movies = load_movies()
-    return jsonify(movies)
+    num_of_movies = len(movies)
+    tmp_movies_list = []
+    for num in range(num_of_movies):
+        tmp_movies_list.append(movies[num_of_movies - (num+1)])
+
+    return jsonify(tmp_movies_list)
 
 
 @app.route("/update")
@@ -30,14 +36,14 @@ def update():
 
     downloaded = True if "downloaded" in args else False
     watched = True if "watched" in args else False
-    upcoming = True if "upcoming" in args else False
+    future_release = True if "future_release" in args else False
 
     movies = load_movies()
     for movie in movies:
         if movie["index"] == int(args["index"]):
             movie["downloaded"] = downloaded
             movie["watched"] = watched
-            movie["upcoming"] = upcoming
+            movie["future_release"] = future_release
 
     save_movies(movies)
 
@@ -119,4 +125,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, port=8000)
+    app.run(debug=True, port=8000)

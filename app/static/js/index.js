@@ -5,7 +5,7 @@ let current_list = [];
 let order = true;
 
 function process_movies(movies) {
-    const showMoviesDiv = document.getElementById('show_movies');
+    const showMoviesDiv = document.getElementById('showMovies');
     showMoviesDiv.innerHTML = '';
     let id = 0;
 
@@ -13,24 +13,24 @@ function process_movies(movies) {
         id = ++id;
 
         showMoviesDiv.innerHTML += `<tr>
-        <td id="index_td_id" >${id}</td>
-        <td id="index_td_movie" >${movie.movie}</td>
+        <td id="index-td-id" >${id}</td>
+        <td id="index-td-movie" >${movie.movie}</td>
         <td id="index_td_tv" >labels</td>
-        <td id="index_td_label" >${movie.year}</td>
-        <td id="index_td_year" >${movie.series ? "✓" : "-"}</td>
-        <td id="index_td_dropdown">
+        <td id="index-td-label" >${movie.year}</td>
+        <td id="index-td-year" >${movie.series ? "✓" : "-"}</td>
+        <td id="index-td-dropdown">
             <div class="dropdown">
                 <button>•••</button>
                 <div class="dropdown-content">
                     <form action="/update" method="GET">
                         <a href="/edit/${movie.index}">Edit </a>
-                        <input id="update_watched" type="checkbox" name="watched" value="true" ${movie.watched ? "checked" : ''} />
+                        <input id="update-watched" type="checkbox" name="watched" value="true" ${movie.watched ? "checked" : ''} />
                         Watched
                         <br />
-                        <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? "checked" : ''} />
+                        <input id="update-downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? "checked" : ''} />
                         Downloaded
                         <br />
-                        <button id="update_submit" type="submit" name="index" value="${movie.index}" >Done</button>
+                        <button id="update-submit" type="submit" name="index" value="${movie.index}" >Done</button>
                     </form>
                 </div>
             </div>
@@ -40,40 +40,40 @@ function process_movies(movies) {
     current_list = movies;
 }
 
-function watched_downloaded() {
+// function watched_downloaded() {
 
-    const downloaded = document.getElementById('downloaded');
-    const watched = document.getElementById('watched');
-    const download_checked = downloaded.checked;
-    const watch_checked = watched.checked;
-    let new_movie_list = [];
+//     const downloaded = document.getElementById('downloaded');
+//     const watched = document.getElementById('watched');
+//     const download_checked = downloaded.checked;
+//     const watch_checked = watched.checked;
+//     let new_movie_list = [];
 
-    if (watch_checked && download_checked) {
-        for (let movie of movies) {
-            if (movie.watched && movie.downloaded) {
-                new_movie_list.push(movie);
-                process_movies(new_movie_list);
+//     if (watch_checked && download_checked) {
+//         for (let movie of movies) {
+//             if (movie.watched && movie.downloaded) {
+//                 new_movie_list.push(movie);
+//                 process_movies(new_movie_list);
 
-            }
-        }
-    } else if (watch_checked) {
-        for (let movie of movies) {
-            if (movie.watched) {
-                new_movie_list.push(movie);
-                process_movies(new_movie_list);
-            }
-        }
-    } else if (download_checked) {
-        for (let movie of movies) {
-            if (movie.downloaded) {
-                new_movie_list.push(movie);
-                process_movies(new_movie_list);
-            }
-        }
-    } else {
-        process_movies(default_list);
-    }
-}
+//             }
+//         }
+//     } else if (watch_checked) {
+//         for (let movie of movies) {
+//             if (movie.watched) {
+//                 new_movie_list.push(movie);
+//                 process_movies(new_movie_list);
+//             }
+//         }
+//     } else if (download_checked) {
+//         for (let movie of movies) {
+//             if (movie.downloaded) {
+//                 new_movie_list.push(movie);
+//                 process_movies(new_movie_list);
+//             }
+//         }
+//     } else {
+//         process_movies(default_list);
+//     }
+// }
 
 function checkbox_all() {
     if (document.getElementById("all").checked) {

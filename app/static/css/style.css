@@ -28,7 +28,7 @@ h1 {
   text-align: center;
 }
 
-#log_out {
+#log-out {
   float: right;
   padding: 8px 20px;
   background-color: #4fc9b1;
@@ -38,7 +38,7 @@ h1 {
   /* margin-bottom: 10px; */
 }
 
-#base_header_ul_li_logout {
+#base-header-ul-li-logout {
   float: right;
   padding-right: 20px;
   margin-left: auto;
@@ -46,7 +46,7 @@ h1 {
   text-decoration: none;
 }
 
-#base_header_ul_li_logout:hover {
+#base-header-ul-li-logout:hover {
   color: #378a79;
   border-radius: 10px;
 }
@@ -162,11 +162,11 @@ table tr:last-child {
   text-align: left;
 }
 
-#index_td_dropdown {
+#index-td-dropdown {
   padding-left: 0px;
 }
 
-.label_pic {
+.label-pic {
   width: 25px;
 }
 
@@ -182,12 +182,12 @@ table tr:last-child {
   padding: 5px;
 }
 
-#th_tv:hover {
+#th-tv:hover {
   color: #317e6f;
   cursor: pointer;
 }
 
-#th_year:hover {
+#th-year:hover {
   color: #317e6f;
   cursor: pointer;
 }

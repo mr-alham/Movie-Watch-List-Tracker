@@ -18,12 +18,12 @@
     <th>Edit</th>
   </tr>
 
-  <tbody id="table_body"></tbody>
+  <tbody id="table-body"></tbody>
 
   <script>
     function process_movies() {
 
-      const movie_div = document.getElementById("table_body");
+      const movie_div = document.getElementById("table-body");
       let id = 0;
 
       for (let movie of movies) {
@@ -40,11 +40,11 @@
               <div class="dropdown-content">
                 <form action="/update" method="GET">
                   <a href="/edit/${movie.index}">Edit </a>
-                  <input id="update_watched" type="checkbox" name="watched" value="true" ${movie.watched ? 'checked' : ""} /> Watched
+                  <input id="update-watched" type="checkbox" name="watched" value="true" ${movie.watched ? 'checked' : ""} /> Watched
                   <br>
-                  <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? 'checked' : ""} /> Downloaded
+                  <input id="update-downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? 'checked' : ""} /> Downloaded
                   <br>
-                  <button id="update_submit" type="submit" name="index" value="${movie.index}"> Done </button>
+                  <button id="update-submit" type="submit" name="index" value="${movie.index}"> Done </button>
                 </form>
               </div>
             </div>

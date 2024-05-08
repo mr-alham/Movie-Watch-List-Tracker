@@ -1,101 +1,171 @@
-{% extends 'base.html' %} {% block title %}Alham - Home{% endblock %} {% block head %}
-<style>
-  
-
-</style>
-
+{% extends 'base.html' %} {% block title %}Alham - Home{% endblock %} {% block
+head %}
 <script>
   let movies;
-  let default_list;
-  let current_list = [];
+  let defaultList;
+  let currentList = [];
   let order = true;
 
-  function process_movies(movies) {
-
-    const showMoviesDiv = document.getElementById("show_movies");
+  function processMovies(movies) {
+    const showMoviesDiv = document.getElementById("showMovies");
     showMoviesDiv.innerHTML = "";
     let id = 0;
 
     for (let movie of movies) {
       id = ++id;
 
-      movie.watched ? (label_w = `<img class="label_pic" alt="Watched" src="{{ url_for('static',filename='img/watched.png') }}" title="watched" >`): (label_w = "  ");
-      movie.downloaded ? (label_d = `<img class="label_pic" alt="Downloaded" src="{{ url_for('static',filename='img/downloaded.png') }}" title="Downloaded" >`) : (label_d = "  ");
+      movie.watched ? (labelWatched = `<img class="label-pic" alt="Watched" src="{{ url_for('static',filename='img/watched.png') }}" title="watched" >`) : (labelWatched = "  ");
+      movie.downloaded ? (labelDownloaded = `<img class="label-pic" alt="Downloaded" src="{{ url_for('static',filename='img/downloaded.png') }}" title="Downloaded" >`) : (labelDownloaded = "  ");
 
       showMoviesDiv.innerHTML += `<tr>
-            <td id="index_td_id" class="to_capitalize" >${id}</td>
-            <td id="index_td_movie" class="to_capitalize" title="${movie.upcoming_notes ? movie.upcoming_notes : ""}" >${movie.movie}</td>
-            <td id="index_td_tv" >${label_w} ${label_d}</td>
-            <td id="index_td_label" class="to_capitalize" >${movie.year == '0000' ? "-" : movie.year}${movie.upcoming ? " -" :" "}</td>
-            <td id="index_td_year" class="to_capitalize" >${movie.series ? "✓" : "✖️"}</td>
-            <td id="index_td_dropdown">
+            <td id="index-td-id" class="to_capitalize" >${id}</td>
+            <td id="index-td-movie" class="to_capitalize" title="${movie.upcoming_notes ? movie.upcoming_notes : ""}" >${movie.movie}</td>
+            <td id="index-td-tv" >${labelWatched} ${labelDownloaded}</td>
+            <td id="index-td-label" class="to_capitalize" >${movie.year == "0000" ? "-" : movie.year}${movie.future_release ? " -" : " "}</td>
+            <td id="index-td-year" class="to_capitalize" >${movie.series ? "✓" : "✖️"}</td>
+            <td id="index-td-dropdown">
                 <div class="dropdown">
                     <button>•••</button>
                         <div class="dropdown-content">
                             <form action="/update" method="GET">
                                 <a href="/edit/${movie.index}">Edit </a>
-                                <input id="update_watched" type="checkbox" name="watched" value="true" ${movie.watched ? "checked" : ""} />
-                                Watched
-                                <br />
-                                <input id="update_downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? "checked" : ""} />
-                                Downloaded
-                                <br />
-                                <input type="checkbox" name="upcoming" value="true" ${movie.upcoming ? "checked" : ""} />
-                                Upcoming
-                                <button id="update_submit" type="submit" name="index" value="${movie.index}" >Done</button>
+                                <input id="update-watched" type="checkbox" name="watched" value="true" ${movie.watched ? "checked" : ""} /> Watched <br />
+                                <input id="update-downloaded" type="checkbox" name="downloaded" value="true" ${movie.downloaded ? "checked" : ""} /> Downloaded <br />
+                                <input type="checkbox" name="future_release" value="true" ${movie.future_release ? "checked" : ""} /> Upcoming
+                                <button id="update-submit" type="submit" name="index" value="${movie.index}" >Done</button>
                             </form>
                         </div>
                 </div>
             </td>
         </tr>`;
     }
-    current_list = movies;
+    currentList = movies;
   }
 
-  function watched_downloaded() {
-
+  function watchedDownloaded() {
     const downloaded = document.getElementById("downloaded");
     const watched = document.getElementById("watched");
-    const download_checked = downloaded.checked;
-    const watch_checked = watched.checked;
-    let new_movie_list = [];
+    const futureRelease = document.getElementById("future-release");
 
-    if (watch_checked && download_checked) {
+    const downloadChecked = downloaded.checked;
+    const watchChecked = watched.checked;
+    // const futureReleaseChecked = futureRelease.checked = false;
+    futureRelease.checked ? (futureReleaseChecked = true) : (futureReleaseChecked = false);
+
+    let newMovieList = [];
+
+    if (watchChecked && downloadChecked) {
       for (let movie of movies) {
-        if (movie.watched && movie.downloaded) {
-          new_movie_list.push(movie);
-          process_movies(new_movie_list);
+        if (movie.downloaded && movie.watched) {
+          if (futureReleaseChecked) { newMovieList.push(movie); processMovies(newMovieList);
+          } else if (movie.future_release) {
+            continue;
+          } else {
+            newMovieList.push(movie);
+            processMovies(newMovieList);
+          }
         }
       }
-    } else if (watch_checked) {
+    } else if (watchChecked) {
       for (let movie of movies) {
         if (movie.watched) {
-          new_movie_list.push(movie);
-          process_movies(new_movie_list);
+          if (futureReleaseChecked) {
+            newMovieList.push(movie);
+            processMovies(newMovieList);
+          } else if (movie.future_release) {
+            continue;
+          } else {
+            newMovieList.push(movie);
+            processMovies(newMovieList);
+          }
         }
       }
-    } else if (download_checked) {
+    } else if (downloadChecked) {
       for (let movie of movies) {
         if (movie.downloaded) {
-          new_movie_list.push(movie);
-          process_movies(new_movie_list);
+          if (futureReleaseChecked) {
+            newMovieList.push(movie);
+            processMovies(newMovieList);
+          } else if (movie.future_release) {
+            continue;
+          } else {
+            newMovieList.push(movie);
+            processMovies(newMovieList);
+          }
         }
       }
-    } else {
-      process_movies(default_list);
+    } else if (!futureReleaseChecked) {
+      for (let movie of movies) {
+        if (movie.future_release) {
+          continue;
+        } else {
+          newMovieList.push(movie);
+          processMovies(newMovieList);
+        }
+      }
+    }
+
+    // if (watch_checked && download_checked) {
+    //   for (let movie of movies) {
+    //     if (movie.watched && movie.downloaded) {
+    //       if (futureReleaseChecked && movie.future_release == false){
+    //         new_movie_list.push(movie);
+    //         process_movies(new_movie_list);
+    //         console.log('Hola!');
+    //       } else {
+    //       // new_movie_list.push(movie);
+    //       process_movies(new_movie_list);
+    //       }
+    //     }
+    //   }
+    // }
+    // else if (watch_checked && download_checked) {
+    //   for (let movie of movies) {
+    //     if (movie.watched && movie.downloaded) {
+    //       new_movie_list.push(movie);
+    //       process_movies(new_movie_list);
+    //     }
+    //   }
+    // }
+    //  else if (watch_checked && futureReleaseChecked) {
+    //   for (let movie of movies) {
+    //     if (movie.watched && movie.downloaded) {
+    //       new_movie_list.push(movie);
+    //       process_movies(new_movie_list);
+    //     }
+    //   }
+    // } else if (futureReleaseChecked && download_checked) {
+    //   for (let movie of movies) {
+    //     if (movie.watched && movie.downloaded) {
+    //       new_movie_list.push(movie);
+    //       process_movies(new_movie_list);
+    //     }
+    //   }
+    // } else if (futureReleaseChecked) {
+    //   for (let movie of movies) {
+    //     if (movie.future_release) {
+    //       new_movie_list.push(movie);
+    //       process_movies(new_movie_list);
+    //     }
+    //   }
+    // }
+    else {
+      processMovies(defaultList);
     }
   }
 
-  function checkbox_all() {
+  function checkboxAll() {
     if (document.getElementById("all").checked) {
       document.getElementById("watched").disabled = true;
       document.getElementById("downloaded").disabled = true;
+      document.getElementById("future-release").disabled = true;
 
-      process_movies(movies);
+      processMovies(movies);
     } else {
       document.getElementById("watched").disabled = false;
       document.getElementById("downloaded").disabled = false;
-      watched_downloaded();
+      document.getElementById("future-release").disabled = false;
+      watchedDownloaded();
     }
   }
 
@@ -103,15 +173,15 @@
     .then((response) => response.json())
     .then((data) => {
       movies = data;
-      let new_movie_list = [];
+      let newMovieList = [];
       for (let movie of movies) {
         if (!movie.watched) {
-          new_movie_list.push(movie);
+          newMovieList.push(movie);
         }
       }
 
-      default_list = new_movie_list;
-      process_movies(new_movie_list);
+      defaultList = newMovieList;
+      processMovies(newMovieList);
     })
     .catch((error) => console.log(error));
 </script>
@@ -120,29 +190,36 @@
 <h1>Movie Watch List</h1>
 
 <form action="/search" method="get">
-  <input type="text" name="query" id="search_query" placeholder="Search..." required autofocus/>
-  <button type="submit" id="search_submit">Search</button>
+  <input type="text" name="query" id="search-query" placeholder="Search..." required autofocus />
+  <button type="submit" id="search-submit">Search</button>
 </form>
 
 <br />
 
-<input type="checkbox" name="all" id="all" value="true" onclick="checkbox_all()"/>
-<label for="all" id="label_all">Select All </label>
-<input type="checkbox" name="watched" id="watched" value="true" onclick="watched_downloaded()"/>
-<label for="watched" id="label_watched">Watched </label>
-<input type="checkbox" name="downloaded" id="downloaded" value="true" onclick="watched_downloaded()"/>
-<label for="downloaded" id="label_downloaded">Downloaded</label>
+<input type="checkbox" name="all" id="all" value="true" onclick="checkboxAll()"/>
+<label for="all">Select All </label>
+
+<input type="checkbox" name="watched" id="watched" value="true" onclick="watchedDownloaded()"/>
+<label for="watched">Watched </label>
+
+<input type="checkbox" name="downloaded" id="downloaded" value="true" onclick="watchedDownloaded()"/>
+<label for="downloaded">Downloaded</label>
+
+<input type="checkbox" name="future-release" id="future-release" value="true" checked onclick="watchedDownloaded()"/>
+<label for="future-release">Future Release</label>
 <br />
 
 <table>
   <tr>
-    <th id="th_id">#</th>
-    <th id="th_movie">Movie</th>
-    <th id="th_labels">Labels</th>
-    <th id="th_year" title="Sort by Year" >Year</th>
-    <th id="th_tv" title="Sort by whether TV-Series or Not TV-Series" >TV-Series</th>
+    <th id="th-id">#</th>
+    <th id="th-movie">Movie</th>
+    <th id="th-labels">Labels</th>
+    <th id="th-year" title="Sort by Year">Year</th>
+    <th id="th-tv" title="Sort by whether TV-Series or Not TV-Series">
+      TV-Series
+    </th>
   </tr>
-  <tbody id="show_movies"></tbody>
+  <tbody id="showMovies"></tbody>
 </table>
 <br />
 
@@ -152,35 +229,34 @@
 </div>
 
 <div class="container">
-    <img src="{{ url_for('static',filename='img/downloaded.png')}}" alt="Image" />
+  <img src="{{ url_for('static',filename='img/downloaded.png')}}" alt="Image" />
   <span> - Downloaded Movies.</span>
 </div>
 
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
 
-<img src="{{ url_for('static', filename='img/index.png')}}" alt="image">
+<img src="{{ url_for('static', filename='img/index.png')}}" alt="image" />
 
 <script>
-
-  const year = document.getElementById("th_year");
-  const tv = document.getElementById("th_tv");
+  const year = document.getElementById("th-year");
+  const tv = document.getElementById("th-tv");
 
   year.addEventListener("click", function () {
     if (order) {
-      current_list.sort((a, b) => a.year - b.year);
+      currentList.sort((a, b) => a.year - b.year);
       order = false;
     } else {
-      current_list.sort((a, b) => b.year - a.year);
+      currentList.sort((a, b) => b.year - a.year);
       order = true;
     }
-    process_movies(current_list);
+    processMovies(currentList);
   });
 
   tv.addEventListener("click", function () {
     if (order) {
-      current_list.sort((a, b) => {
+      currentList.sort((a, b) => {
         if (a.series === b.series) {
           return 0;
         }
@@ -188,7 +264,7 @@
       });
       order = false;
     } else {
-      current_list.sort((a, b) => {
+      currentList.sort((a, b) => {
         if (a.series === b.series) {
           return 0;
         }
@@ -196,9 +272,8 @@
       });
       order = true;
     }
-    process_movies(current_list);
+    processMovies(currentList);
   });
-
 </script>
 
 {% endblock %}

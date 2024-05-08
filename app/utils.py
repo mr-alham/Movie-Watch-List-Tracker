@@ -5,6 +5,7 @@ from re import IGNORECASE, compile, findall
 from flask import request
 
 data_file = "data/movies.json"
+
 if not exists(data_file):
     with open(data_file, "w"):
         pass

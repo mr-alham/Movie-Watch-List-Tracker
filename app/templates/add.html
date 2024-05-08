@@ -43,7 +43,7 @@
     background-color: #45a396;
   }
 
-  #status_div {
+  #status-div {
     width: 10px;
     float: center;
     display: flex;
@@ -79,22 +79,22 @@
   </tr>
   <form method="GET" action="/add/data">
     <tr>
-      <th> <input id="td_movie" type="text" name="movie_name" placeholder="Movie Name..." required autofocus /> </th>
+      <th> <input id="td-movie" type="text" name="movie_name" placeholder="Movie Name..." required autofocus /> </th>
       <th> <input type="number" name="year" placeholder="Year..." min="0000" max="2030" pattern="0000|18\d{2}|19\d{2}|20[0-2]\d|2030" required /> </th>
-      <th> <input id="td_series" type="checkbox" name="tv_series" value="true" /> </th>
+      <th> <input id="td-series" type="checkbox" name="tv_series" value="true" /> </th>
     </tr>
 
     <tr id="upcoming" style="display: none;">
       <td colspan="3" style="display: grid; grid-template-columns: 1fr auto 1fr; grid-gap: 2px "> 
-        <input id="upcoming_checkbox" type="checkbox" name="upcoming" value="true">
-        <label for="upcoming_checkbox">Upcoming releases</label>
+        <input id="upcoming-checkbox" type="checkbox" name="upcoming" value="true">
+        <label for="upcoming-checkbox">Upcoming releases</label>
       </td>
     </tr>
 
     <tr>
       <td colspan="3 ">
-      <label for="upcoming_notes">Notes</label>
-      <textarea name="upcoming_notes" id="upcoming_notes" cols="30" rows="3" title="Details about movie/series such as downloaded series/years."></textarea>
+      <label for="upcoming-notes">Notes</label>
+      <textarea name="upcoming_notes" id="upcoming-notes" cols="30" rows="3" title="Details about movie/series such as downloaded series/years."></textarea>
       </td>
     </tr>
 
@@ -102,12 +102,12 @@
       <td colspan="3" id="hint">Enter `0000` if don't know the year.</td>
     </tr>
     <tr>
-      <div id="status_div" class="status_div">
+      <div id="status-div" class="status-div">
         <td colspan="3">
-          <input class="status" id="td_watched" type="checkbox" name="watched" value="true" />
-          <label class="status" for="td_watched">Watched</label>
-          <input class="status" id="td_downloaded" type="checkbox" name="downloaded" value="true" />
-          <label class="status" for="td_downloaded">Downloaded</label>
+          <input class="status" id="td-watched" type="checkbox" name="watched" value="true" />
+          <label class="status" for="td-watched">Watched</label>
+          <input class="status" id="td-downloaded" type="checkbox" name="downloaded" value="true" />
+          <label class="status" for="td-downloaded">Downloaded</label>
         </td>
       </div>
     </tr>
@@ -123,7 +123,7 @@
 <img src="{{ url_for('static', filename="img/add.png") }}" alt="image">
 
 <script>
-  const series = document.getElementById('td_series');
+  const series = document.getElementById('td-series');
   const upcoming_element = document.getElementById('upcoming');
   // const upcoming_label = document.getElementById('upcoming_label');
 
