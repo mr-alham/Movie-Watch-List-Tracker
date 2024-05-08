@@ -2,10 +2,12 @@
 """The "Movie Watch List Tracker" is a Python Flask based web application
  that allows users to track and manage their movie watchlists."""
 
+# PYTHON_PYLINT: disable=import-error
+
 from subprocess import run
 
-from flask import Flask, jsonify, redirect, render_template, request  # import-error: false
-from utils import load_from_form, load_movies, save_movies, search  # import-error: false
+from flask import Flask, jsonify, redirect, render_template, request
+from utils import load_from_form, load_movies, save_movies, search
 
 app = Flask(__name__)
 
@@ -52,7 +54,7 @@ def update():
     return redirect("/")
 
 
-@app.route("/edit/<int:index>")
+@app.route("/edit/<int:edit_index>")
 def edit(edit_index):
     """shows the webpage to edit the specified movie"""
     edit_movies = load_movies()
@@ -60,10 +62,11 @@ def edit(edit_index):
     for movie in edit_movies:
         if movie["index"] == edit_index:
             return render_template("edit.html", movies=movie)
+  
+    # if index dosen't exist will redirect to home page.
+    return render_template("index.html")
 
-    return render_template("index.html")  # if index dosen't exist will redirect to home page.
-
-@app.route("/edit/data/<int:index>")
+@app.route("/edit/data/<int:edit_data_index>")
 def edit_data(edit_data_index):
     """retrieve the edited movie from the web page and save it"""
     updated_movie = load_from_form()
@@ -100,13 +103,10 @@ def add_data():
     return redirect("/add")
 
 
-searched_movie_list = []
-
-
 @app.route("/search", methods=["GET"])
 def search_query():
     """shows the list of matching results on a individual web page"""
-    # global searched_movie_list
+    global searched_movie_list
     query = request.args.get("query")
     searched_movie_list = search(query)  # dict of movie
 

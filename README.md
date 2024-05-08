@@ -1,5 +1,7 @@
 # Movie Watch List Tracker
 
+[![Super-Linter](https://github.com/mr-alham/Movie-Watch-List-Tracker/actions/workflows/actions.yaml/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 Movie Watch List Tracker is a simple web application designed to help users manage their movie watchlist. With this application, users can easily add, edit, and search for movies, as well as mark them as watched or downloaded. The project provides a user-friendly interface for convenient navigation and interaction.
 
 ![Image of the web page](https://github.com/mr-alham/projects-of-alham/blob/main/private/movie-watch-list-main-page.png "Home page")
