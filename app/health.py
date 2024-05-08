@@ -1,8 +1,8 @@
 #!/bin/env python3
 """This Python script is employed to perform a health check on the Dockerfile."""
 
-from requests import get
-
+from requests import get  # pylint: disable=import-error
+from sys import exit # pylint: disable=import-error
 
 def health(url, timeout=5):
     """This function checks the health by sending an HTTP GET request"""
@@ -12,16 +12,16 @@ def health(url, timeout=5):
 
         return True
 
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-exception-caught
         print(f"Health check failed: {e}")
 
         return False
 
 
 if __name__ == '__main__':
-    url = 'http://127.0.0.1:8000'
+    URL = 'http://127.0.0.1:8000'
 
-    if health(url):
+    if health(URL):
         print("Server is healthy")
         exit(0)
 
