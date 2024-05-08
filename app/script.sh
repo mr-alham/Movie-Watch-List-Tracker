@@ -8,4 +8,5 @@ pids=$(pgrep gunicorn)
 for pid in $pids; do
 
 	kill -TERM "$pid"
-   done
+
+done

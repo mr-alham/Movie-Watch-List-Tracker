@@ -6,7 +6,7 @@ from re import IGNORECASE
 from re import compile as recompile
 from re import findall
 
-from flask import request
+from flask import request  # import-error: false
 
 DATA_FILE = "data/movies.json"
 
@@ -50,7 +50,7 @@ def load_movies() -> list[dict]:
         print("the JSON file not found")
         return 500
 
-    except Exception as e:
+    except Exception as e:  #  broad-exception-caught: false
         print(e)
         return 500
 

@@ -4,8 +4,8 @@
 
 from subprocess import run
 
-from flask import Flask, jsonify, redirect, render_template, request
-from utils import load_from_form, load_movies, save_movies, search
+from flask import Flask, jsonify, redirect, render_template, request  # import-error: false
+from utils import load_from_form, load_movies, save_movies, search  # import-error: false
 
 app = Flask(__name__)
 
@@ -21,11 +21,11 @@ def index():
 @app.route("/movies")
 def movies() -> dict:
     """returns the list of movies as a json object"""
-    movies = load_movies()
-    num_of_movies = len(movies)
+    movies_movies = load_movies()
+    num_of_movies = len(movies_movies)
     tmp_movies_list = []
     for num in range(num_of_movies):
-        tmp_movies_list.append(movies[num_of_movies - (num + 1)])
+        tmp_movies_list.append(movies_movies[num_of_movies - (num + 1)])
 
     return jsonify(tmp_movies_list)
 
@@ -40,39 +40,40 @@ def update():
     watched = "watched" in args
     future_release = "future_release" in args
 
-    movies = load_movies()
-    for movie in movies:
+    update_movies = load_movies()
+    for movie in update_movies:
         if movie["index"] == int(args["index"]):
             movie["downloaded"] = downloaded
             movie["watched"] = watched
             movie["future_release"] = future_release
 
-    save_movies(movies)
+    save_movies(update_movies)
 
     return redirect("/")
 
 
 @app.route("/edit/<int:index>")
-def edit(index):
+def edit(edit_index):
     """shows the webpage to edit the specified movie"""
-    movies = load_movies()
+    edit_movies = load_movies()
 
-    for movie in movies:
-        if movie["index"] == index:
+    for movie in edit_movies:
+        if movie["index"] == edit_index:
             return render_template("edit.html", movies=movie)
 
+    return render_template("index.html")  # if index dosen't exist will redirect to home page.
 
 @app.route("/edit/data/<int:index>")
-def edit_data(index):
+def edit_data(edit_data_index):
     """retrieve the edited movie from the web page and save it"""
     updated_movie = load_from_form()
-    movies = load_movies()
+    edit_data_movies = load_movies()
 
-    for i, movie in enumerate(movies):
-        if movie["index"] == index:
-            movies[i] = updated_movie
+    for i, movie in enumerate(edit_data_movies):
+        if movie["index"] == edit_data_index:
+            edit_data_movies[i] = updated_movie
             break
-    save_movies(movies)
+    save_movies(edit_data_movies)
 
     return redirect("/")
 
@@ -88,13 +89,13 @@ def add_data():
     """get new movies and save them"""
 
     new_movie = load_from_form()
-    movies = load_movies()
+    add_data_movies = load_movies()
     new_movie["index"] = (
-        100 if len(movies) == 1 and movies[0]["movie"] == "-" else len(movies) + 100
+        100 if len(add_data_movies) == 1 and add_data_movies[0]["movie"] == "-" else len(add_data_movies) + 100
     )
 
-    movies.append(new_movie)
-    save_movies(movies)
+    add_data_movies.append(new_movie)
+    save_movies(add_data_movies)
 
     return redirect("/add")
 
@@ -105,7 +106,7 @@ searched_movie_list = []
 @app.route("/search", methods=["GET"])
 def search_query():
     """shows the list of matching results on a individual web page"""
-    global searched_movie_list
+    # global searched_movie_list
     query = request.args.get("query")
     searched_movie_list = search(query)  # dict of movie
 
