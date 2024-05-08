@@ -37,14 +37,17 @@ def load_movies() -> list[dict]:
 
     except JSONDecodeError:
         return [
-            {
-                "movie": "-",
-                "year": "-",
-                "series": False,
-                "downloaded": False,
-                "watched": False,
-            }
-        ]
+        {
+            "year": "-",
+            "index": 100,
+            "movie": "-",
+            "series": False,
+            "watched": False,
+            "downloaded": False,
+            "future_release": False,
+            "upcoming_notes": False
+        }
+    ]
 
     except FileNotFoundError:
         print("the JSON file not found")

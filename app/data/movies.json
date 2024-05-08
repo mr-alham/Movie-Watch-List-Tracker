@@ -1,0 +1,14 @@
+{
+    "movies": [
+        {
+            "year": "-",
+            "index": 100,
+            "movie": "-",
+            "series": false,
+            "watched": false,
+            "downloaded": false,
+            "future_release": false,
+            "upcoming_notes": false
+        }
+    ]
+}
