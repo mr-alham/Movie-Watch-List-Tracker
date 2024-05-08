@@ -160,7 +160,7 @@ table tr:last-child {
 }
 
 #index-td-dropdown {
-  padding-left: 0px;
+  padding-left: none;
 }
 
 .label-pic {

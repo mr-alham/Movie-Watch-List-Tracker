@@ -1,15 +1,17 @@
-'''This module provides reusable functions for app.py'''
+"""This module provides reusable functions for app.py"""
 
 from json import JSONDecodeError, dump, load
 from os.path import exists
-from re import IGNORECASE, compile as recompile, findall
+from re import IGNORECASE
+from re import compile as recompile
+from re import findall
 
 from flask import request
 
 DATA_FILE = "data/movies.json"
 
 if not exists(DATA_FILE):
-    with open(DATA_FILE, "w", encoding='utf-8'):
+    with open(DATA_FILE, "w", encoding="utf-8"):
         pass
 
 
@@ -22,14 +24,14 @@ def save_movies(movies: list):
 
     movies = {"movies": movies}  # type: ignore
 
-    with open(DATA_FILE, "w") as file:
+    with open(DATA_FILE, "w", encoding="utf-8") as file:
         dump(movies, file, indent=1)
 
 
 def load_movies() -> list[dict]:
     """loads saved movies on the file to the memory"""
     try:
-        with open(DATA_FILE, "r") as file:
+        with open(DATA_FILE, "r", encoding="utf-8") as file:
             movies = load(file)
         return movies["movies"]
 
@@ -57,13 +59,13 @@ def load_from_form() -> dict:
     """extracts the data from the web form and send the extracted data as a dict"""
 
     args = request.args.to_dict()
-    index = True if "index" in args else False
     movie = args.get("movie_name")
     year = args.get("year")
-    series = True if "tv_series" in args else False
-    watched = True if "watched" in args else False
-    downloaded = True if "downloaded" in args else False
-    upcoming = True if "upcoming" in args else False
+    index = "index" in args
+    series = "tv_series" in args
+    watched = "watched" in args
+    upcoming = "upcoming" in args
+    downloaded = "downloaded" in args
     upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
     if index:

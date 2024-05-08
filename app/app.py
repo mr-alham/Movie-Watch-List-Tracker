@@ -1,5 +1,6 @@
 #!/bin/env python3
-'''The "Movie Watch List Tracker" is a Python Flask based web application that allows users to track and manage their movie watchlists.'''
+"""The "Movie Watch List Tracker" is a Python Flask based web application
+ that allows users to track and manage their movie watchlists."""
 
 from subprocess import run
 
@@ -8,8 +9,7 @@ from utils import load_from_form, load_movies, save_movies, search
 
 app = Flask(__name__)
 
-# TODO: add a filtering tag to filter movies by future releases
-# TODO: add a button to delete added Movies
+# Future Development: add a button to delete added Movies
 
 
 @app.route("/")
@@ -32,12 +32,13 @@ def movies() -> dict:
 
 @app.route("/update")
 def update():
-    """from function, we can update weather the listed movie is watched or downloaded from the main page"""
+    """from function, we can update weather the listed movie 
+    is watched or downloaded from the main page"""
     args = request.args.to_dict()
 
-    downloaded = True if "downloaded" in args else False
-    watched = True if "watched" in args else False
-    future_release = True if "future_release" in args else False
+    downloaded = "downloaded" in args
+    watched = "watched" in args
+    future_release = "future_release" in args
 
     movies = load_movies()
     for movie in movies:
@@ -98,6 +99,9 @@ def add_data():
     return redirect("/add")
 
 
+searched_movie_list = []
+
+
 @app.route("/search", methods=["GET"])
 def search_query():
     """shows the list of matching results on a individual web page"""
@@ -110,22 +114,29 @@ def search_query():
 
 @app.route("/searched")
 def searched_movies():
-    '''handles the searching mechanism for the webpage'''
+    """handles the searching mechanism for the webpage"""
     return jsonify(searched_movie_list)
 
 
 @app.route("/log_out", methods=["POST"])
 def log_out():
-    '''shows the logged out banner on the web page'''
+    """shows the logged out banner on the web page"""
     return render_template("log_out.html")
 
 
 @app.route("/logout", methods=["POST"])
 def logout():
-    '''logOut in here log out means stopping the docker container via bash script'''
-    run(["sh", "script.sh", "&", ">/dev/null"])
+    """logOut in here log out means stopping the docker container via bash script"""
+    run(["sh", "script.sh", "&", ">/dev/null"], check=True)
 
     return "", 200
+
+
+@app.route("/health")
+def health():
+    """this route is used to check the health status of the Docker container"""
+
+    return "Hola! My Love, I am still Alive.", 200
 
 
 if __name__ == "__main__":
