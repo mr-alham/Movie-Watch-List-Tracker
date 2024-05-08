@@ -1,13 +1,15 @@
+'''This module provides reusable functions for app.py'''
+
 from json import JSONDecodeError, dump, load
 from os.path import exists
-from re import IGNORECASE, compile, findall
+from re import IGNORECASE, compile as recompile, findall
 
 from flask import request
 
-data_file = "data/movies.json"
+DATA_FILE = "data/movies.json"
 
-if not exists(data_file):
-    with open(data_file, "w"):
+if not exists(DATA_FILE):
+    with open(DATA_FILE, "w", encoding='utf-8'):
         pass
 
 
@@ -20,14 +22,14 @@ def save_movies(movies: list):
 
     movies = {"movies": movies}  # type: ignore
 
-    with open(data_file, "w") as file:
+    with open(DATA_FILE, "w") as file:
         dump(movies, file, indent=1)
 
 
 def load_movies() -> list[dict]:
     """loads saved movies on the file to the memory"""
     try:
-        with open(data_file, "r") as file:
+        with open(DATA_FILE, "r") as file:
             movies = load(file)
         return movies["movies"]
 
@@ -86,7 +88,7 @@ def load_from_form() -> dict:
 def search(query: str) -> list:
     """handles the search"""
     movies = load_movies()
-    pattern = compile(query, IGNORECASE)
+    pattern = recompile(query, IGNORECASE)
     year_query = findall(r"\b\d{4}\b", query)
     re_matches = []
     year_matches = []

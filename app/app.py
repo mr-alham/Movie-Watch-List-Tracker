@@ -1,4 +1,5 @@
 #!/bin/env python3
+'''The "Movie Watch List Tracker" is a Python Flask based web application that allows users to track and manage their movie watchlists.'''
 
 from subprocess import run
 
@@ -7,8 +8,8 @@ from utils import load_from_form, load_movies, save_movies, search
 
 app = Flask(__name__)
 
-# TODO add a filtering tag to filter movies by future releases
-# TODO add a button to delete added Movies
+# TODO: add a filtering tag to filter movies by future releases
+# TODO: add a button to delete added Movies
 
 
 @app.route("/")
@@ -109,16 +110,19 @@ def search_query():
 
 @app.route("/searched")
 def searched_movies():
+    '''handles the searching mechanism for the webpage'''
     return jsonify(searched_movie_list)
 
 
 @app.route("/log_out", methods=["POST"])
 def log_out():
+    '''shows the logged out banner on the web page'''
     return render_template("log_out.html")
 
 
 @app.route("/logout", methods=["POST"])
 def logout():
+    '''logOut in here log out means stopping the docker container via bash script'''
     run(["sh", "script.sh", "&", ">/dev/null"])
 
     return "", 200
