@@ -4,6 +4,7 @@
 from sys import exit as bye  # pylint: disable=import-error
 from requests import get  # pylint: disable=import-error
 
+
 def health(url, timeout=5):
     """This function checks the health by sending an HTTP GET request"""
     try:

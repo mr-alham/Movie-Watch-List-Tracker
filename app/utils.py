@@ -52,7 +52,7 @@ def load_movies() -> list[dict]:
 
     except Exception as e:  # pylint: disable=W0718
         print(e)
-        return 500  # type: int
+        return 500  # type: ignore
 
 
 def load_from_form() -> dict:
