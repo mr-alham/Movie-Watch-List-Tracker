@@ -22,7 +22,7 @@ def save_movies(movies: list):
         if movie["movie"] == "-":
             movies.pop(i)
 
-    to_save_movies = {"movies": movies}  # type: dict[str, Any]
+    to_save_movies = {"movies": movies}  # type: ignore
 
     with open(DATA_FILE, "w", encoding="utf-8") as file:
         dump(to_save_movies, file, indent=1)
@@ -71,7 +71,7 @@ def load_from_form() -> dict:
     if index_bool:
         index = int(args["index"])  # type: int
     else:
-        index = 100  # type: int
+        index = 100  # type: int  # mypy: disallow-no-redef
 
     add_new_movie = {
         "index": index,
