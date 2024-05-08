@@ -22,7 +22,7 @@ def save_movies(movies: list):
         if movie["movie"] == "-":
             movies.pop(i)
 
-    movies = {"movies": movies}
+    movies = {"movies": movies}  # type: dict[str, any]
 
     with open(DATA_FILE, "w", encoding="utf-8") as file:
         dump(movies, file, indent=1)
@@ -48,11 +48,11 @@ def load_movies() -> list[dict]:
 
     except FileNotFoundError:
         print("the JSON file not found")
-        return 500
+        return 500  # type: int
 
     except Exception as e:  # pylint: disable=W0718
         print(e)
-        return 500
+        return 500  # type: int
 
 
 def load_from_form() -> dict:
@@ -69,9 +69,9 @@ def load_from_form() -> dict:
     upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
     if index:
-        index = int(args["index"])
+        index = int(args["index"])  # type: int
     else:
-        index = 100
+        index = 100  # type: int
 
     add_new_movie = {
         "index": index,

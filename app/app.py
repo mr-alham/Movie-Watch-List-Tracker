@@ -4,8 +4,10 @@
 
 from subprocess import run  # pylint: disable=import-error
 
-from flask import Flask, jsonify, redirect, render_template, request  # pylint: disable=import-error
-from utils import load_from_form, load_movies, save_movies, search  # pylint: disable=import-error
+# pylint: disable-next=import-error
+from flask import Flask, jsonify, redirect, render_template, request
+# pylint: disable-next=import-error
+from utils import load_from_form, load_movies, save_movies, search
 
 app = Flask(__name__)
 
@@ -93,7 +95,9 @@ def add_data():
     new_movie = load_from_form()
     add_data_movies = load_movies()
     new_movie["index"] = (
-        100 if len(add_data_movies) == 1 and add_data_movies[0]["movie"] == "-" else len(add_data_movies) + 100
+        100 
+        if len(add_data_movies) == 1 and add_data_movies[0]["movie"] == "-" 
+        else len(add_data_movies) + 100
     )
 
     add_data_movies.append(new_movie)
@@ -105,7 +109,7 @@ def add_data():
 @app.route("/search", methods=["GET"])
 def search_query():
     """shows the list of matching results on a individual web page"""
-    global searched_movie_list
+    global searched_movie_list  # pylint: disable=W0601
     query = request.args.get("query")
     searched_movie_list = search(query)  # dict of movie
 
