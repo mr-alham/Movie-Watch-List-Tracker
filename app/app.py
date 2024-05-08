@@ -32,7 +32,7 @@ def movies() -> dict:
 
 @app.route("/update")
 def update():
-    """from function, we can update weather the listed movie 
+    """from function, we can update weather the listed movie
     is watched or downloaded from the main page"""
     args = request.args.to_dict()
 
