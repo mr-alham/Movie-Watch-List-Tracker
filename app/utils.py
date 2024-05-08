@@ -22,10 +22,10 @@ def save_movies(movies: list):
         if movie["movie"] == "-":
             movies.pop(i)
 
-    movies = {"movies": movies}  # type: dict[str, any]
+    to_save_movies = {"movies": movies}  # type: dict[str, Any]
 
     with open(DATA_FILE, "w", encoding="utf-8") as file:
-        dump(movies, file, indent=1)
+        dump(to_save_movies, file, indent=1)
 
 
 def load_movies() -> list[dict]:
@@ -61,14 +61,14 @@ def load_from_form() -> dict:
     args = request.args.to_dict()
     movie = args.get("movie_name")
     year = args.get("year")
-    index = "index" in args
+    index_bool = "index" in args
     series = "tv_series" in args
     watched = "watched" in args
     upcoming = "upcoming" in args
     downloaded = "downloaded" in args
     upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
-    if index:
+    if index_bool:
         index = int(args["index"])  # type: int
     else:
         index = 100  # type: int

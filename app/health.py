@@ -2,6 +2,7 @@
 """This Python script is employed to perform a health check on the Dockerfile."""
 
 from sys import exit as bye  # pylint: disable=import-error
+
 from requests import get  # pylint: disable=import-error
 
 
