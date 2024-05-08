@@ -71,7 +71,7 @@ def load_from_form() -> dict:
     if index_bool:
         index = int(args["index"])  # type: int
     else:
-        index = 100  # type: int  # mypy: disallow-no-redef
+        index = 100  # type: ignore
 
     add_new_movie = {
         "index": index,
