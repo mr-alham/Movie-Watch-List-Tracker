@@ -2,12 +2,10 @@
 """The "Movie Watch List Tracker" is a Python Flask based web application
  that allows users to track and manage their movie watchlists."""
 
-# PYLINT: disable=import-error
+from subprocess import run  # PYLINT: disable=import-error
 
-from subprocess import run
-
-from flask import Flask, jsonify, redirect, render_template, request
-from utils import load_from_form, load_movies, save_movies, search
+from flask import Flask, jsonify, redirect, render_template, request  # PYLINT: disable=import-error
+from utils import load_from_form, load_movies, save_movies, search  # PYLINT: disable=import-error
 
 app = Flask(__name__)
 
