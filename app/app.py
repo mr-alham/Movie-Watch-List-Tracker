@@ -2,10 +2,10 @@
 """The "Movie Watch List Tracker" is a Python Flask based web application
  that allows users to track and manage their movie watchlists."""
 
-from subprocess import run  # PYLINT: disable=import-error
+from subprocess import run  # pylint: disable=import-error
 
-from flask import Flask, jsonify, redirect, render_template, request  # PYLINT: disable=import-error
-from utils import load_from_form, load_movies, save_movies, search  # PYLINT: disable=import-error
+from flask import Flask, jsonify, redirect, render_template, request  # pylint: disable=import-error
+from utils import load_from_form, load_movies, save_movies, search  # pylint: disable=import-error
 
 app = Flask(__name__)
 
@@ -60,9 +60,10 @@ def edit(edit_index):
     for movie in edit_movies:
         if movie["index"] == edit_index:
             return render_template("edit.html", movies=movie)
-  
+
     # if index dosen't exist will redirect to home page.
     return render_template("index.html")
+
 
 @app.route("/edit/data/<int:edit_data_index>")
 def edit_data(edit_data_index):
