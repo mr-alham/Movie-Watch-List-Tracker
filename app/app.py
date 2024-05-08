@@ -24,7 +24,7 @@ def movies() -> dict:
     num_of_movies = len(movies)
     tmp_movies_list = []
     for num in range(num_of_movies):
-        tmp_movies_list.append(movies[num_of_movies - (num+1)])
+        tmp_movies_list.append(movies[num_of_movies - (num + 1)])
 
     return jsonify(tmp_movies_list)
 

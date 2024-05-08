@@ -1,5 +1,6 @@
-{% extends 'base.html' %} {% block title %}Alham - Home{% endblock %} {% block
-head %}
+{% extends 'base.html' %}  <!-- type: ignore -->
+{% block title %}Alham - Home{% endblock %}  <!-- type: ignore -->
+{% block head %}  <!-- type: ignore -->
 <script>
   let movies;
   let defaultList;
@@ -7,7 +8,7 @@ head %}
   let order = true;
 
   function processMovies(movies) {
-    const showMoviesDiv = document.getElementById("showMovies");
+    const showMoviesDiv = document.getElementById("show-movies");
     showMoviesDiv.innerHTML = "";
     let id = 0;
 
@@ -18,11 +19,11 @@ head %}
       movie.downloaded ? (labelDownloaded = `<img class="label-pic" alt="Downloaded" src="{{ url_for('static',filename='img/downloaded.png') }}" title="Downloaded" >`) : (labelDownloaded = "  ");
 
       showMoviesDiv.innerHTML += `<tr>
-            <td id="index-td-id" class="to_capitalize" >${id}</td>
-            <td id="index-td-movie" class="to_capitalize" title="${movie.upcoming_notes ? movie.upcoming_notes : ""}" >${movie.movie}</td>
+            <td id="index-td-id" class="to-capitalize " >${id}</td>
+            <td id="index-td-movie" class="to-capitalize " title="${movie.upcoming_notes ? movie.upcoming_notes : ""}" >${movie.movie}</td>
             <td id="index-td-tv" >${labelWatched} ${labelDownloaded}</td>
-            <td id="index-td-label" class="to_capitalize" >${movie.year == "0000" ? "-" : movie.year}${movie.future_release ? " -" : " "}</td>
-            <td id="index-td-year" class="to_capitalize" >${movie.series ? "✓" : "✖️"}</td>
+            <td id="index-td-label" class="to-capitalize " >${movie.year == "0000" ? "-" : movie.year}${movie.future_release ? " -" : " "}</td>
+            <td id="index-td-year" class="to-capitalize " >${movie.series ? "✓" : "✖️"}</td>
             <td id="index-td-dropdown">
                 <div class="dropdown">
                     <button>•••</button>
@@ -219,7 +220,7 @@ head %}
       TV-Series
     </th>
   </tr>
-  <tbody id="showMovies"></tbody>
+  <tbody id="show-movies"></tbody>
 </table>
 <br />
 
