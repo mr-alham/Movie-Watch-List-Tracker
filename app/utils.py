@@ -48,7 +48,7 @@ def load_movies() -> list[dict]:
 
     except FileNotFoundError:
         print("the JSON file not found")
-        return 500  # type: int
+        return 500  # type: ignore
 
     except Exception as e:  # pylint: disable=W0718
         print(e)
