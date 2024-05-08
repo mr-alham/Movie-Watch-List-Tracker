@@ -6,6 +6,7 @@ from subprocess import run  # pylint: disable=import-error
 
 # pylint: disable-next=import-error
 from flask import Flask, jsonify, redirect, render_template, request
+
 # pylint: disable-next=import-error
 from utils import load_from_form, load_movies, save_movies, search
 
@@ -95,8 +96,8 @@ def add_data():
     new_movie = load_from_form()
     add_data_movies = load_movies()
     new_movie["index"] = (
-        100 
-        if len(add_data_movies) == 1 and add_data_movies[0]["movie"] == "-" 
+        100
+        if len(add_data_movies) == 1 and add_data_movies[0]["movie"] == "-"
         else len(add_data_movies) + 100
     )
 
