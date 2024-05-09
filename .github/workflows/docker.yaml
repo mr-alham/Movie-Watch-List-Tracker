@@ -33,6 +33,6 @@ jobs:
           push: true
           tags: mralham/movie_watch_list:latest
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/
+          file: app/Dockerfile
           pull: true
 ...
