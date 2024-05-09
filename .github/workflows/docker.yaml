@@ -33,7 +33,6 @@ jobs:
 
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
-        run: echo "The pwd is:\  $(pwd)"
         with:
           push: true
           tags: mralham/movie_watch_list:latest
