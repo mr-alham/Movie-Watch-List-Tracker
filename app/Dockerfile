@@ -2,8 +2,6 @@ FROM python:3.11-alpine
 
 COPY . .
 
-RUN cd app
-
 RUN pwd
 
 RUN ls -lh
