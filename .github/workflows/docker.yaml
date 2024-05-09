@@ -1,7 +1,8 @@
 ---
 name: Build and Push the Docker image
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
 
 permissions: read-all
 
