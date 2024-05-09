@@ -35,11 +35,6 @@ jobs:
       - name: checkout the repository
         uses: actions/checkout@v4
 
-      - name: echo
-        run: |
-          echo "This is pwd of something $(pwd)"
-          echo "This is list directory  $(ls -Rlh)"
-
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
         with:
