@@ -8,7 +8,7 @@ from subprocess import run  # pylint: disable=import-error
 from flask import Flask, jsonify, redirect, render_template, request
 
 # pylint: disable-next=import-error
-from utils import load_from_form, load_movies, save_movies, search
+from app.utils import load_from_form, load_movies, save_movies, search
 
 app = Flask(__name__)
 
