@@ -2,11 +2,13 @@ FROM python:3.11-alpine
 
 COPY . .
 
+RUN ls -lhR /
+
 WORKDIR /app
 
 RUN pwd
 
-RUN ls -lh
+RUN ls -lhR
 
 RUN pip install --no-cache-dir -requirements.txt && \
     adduser -D -H -u 1000 alham && \
