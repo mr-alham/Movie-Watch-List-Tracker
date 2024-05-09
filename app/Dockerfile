@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . /app
 
-RUN "This is the PWD: $(pwd)"
-RUN "This is the ls  $(ls -lh)"
+RUN echo "This is the PWD: $(pwd)"
+RUN echo "This is the ls  $(ls -lh)"
 
 RUN pip install --no-cache-dir -r requirements.txt && \
     adduser -D -H -u 1000 alham && \
