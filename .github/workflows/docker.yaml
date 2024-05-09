@@ -30,6 +30,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: echo
+        run: echo "This is pwd of something $(pwd)"
 
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
@@ -39,7 +42,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: Dockerfile
           pull: true
-      - name: echo
-        run: echo "This is pwd of something $(pwd)"
-
 ...
