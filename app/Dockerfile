@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY . .
 
+RUN cd app
+
 RUN pip install --no-cache-dir -r requirements.txt && \
     adduser -D -H -u 1000 alham && \
     chown alham data/movies.json && \
