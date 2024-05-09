@@ -31,9 +31,10 @@ jobs:
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
         with:
+          context: ./app
           push: true
           tags: mralham/movie_watch_list:latest
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/Dockerfile
+          # file: app/Dockerfile
           pull: true
 ...
