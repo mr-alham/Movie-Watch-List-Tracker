@@ -67,7 +67,7 @@ def load_from_form() -> dict:
     index_bool = "index" in args
     series = "tv_series" in args
     watched = "watched" in args
-    upcoming = "upcoming" in args
+    upcoming = "future_release" in args
     downloaded = "downloaded" in args
     upcoming_notes = args.get("upcoming_notes") if "upcoming_notes" in args else False
 
@@ -83,7 +83,7 @@ def load_from_form() -> dict:
         "series": series,
         "watched": watched,
         "downloaded": downloaded,
-        "upcoming": upcoming,
+        "future_release": upcoming,
         "upcoming_notes": upcoming_notes,
     }
 

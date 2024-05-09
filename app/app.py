@@ -120,12 +120,15 @@ def search_query():
 @app.route("/searched")
 def searched_movies():
     """handles the searching mechanism for the webpage"""
+    global searched_movie_list  # pylint: disable=W0601
+
     return jsonify(searched_movie_list)
 
 
 @app.route("/log_out", methods=["POST"])
 def log_out():
     """shows the logged out banner on the web page"""
+
     return render_template("log_out.html")
 
 

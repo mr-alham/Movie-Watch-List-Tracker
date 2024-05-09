@@ -1,0 +1,29 @@
+---
+name: Build and Push the Docker image
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action
+
+      - name: Login to Docker Hub
+        uses: docker/login-action
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push the Image
+        uses: docker/build-push-action
+        with:
+          push: true
+          tags: mralham/movie_watch_list:latest
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+...
