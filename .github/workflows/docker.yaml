@@ -1,7 +1,15 @@
 ---
 name: Build and Push the Docker image
 
-on: 
+on:
+  push:
+    branches:
+        main
+
+  pull_request:
+    branches:
+        main
+
   workflow_dispatch:
 
 permissions: read-all
@@ -24,7 +32,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and Push the Image
-        uses: docker/build-push-action
+        uses: docker/build-push-action@5
         with:
           push: true
           tags: mralham/movie_watch_list:latest
