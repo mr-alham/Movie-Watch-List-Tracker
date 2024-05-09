@@ -10,7 +10,7 @@ RUN pwd
 
 RUN ls -lhR
 
-RUN pip install --no-cache-dir -requirements.txt && \
+RUN pip install --no-cache-dir -r requirements.txt && \
     adduser -D -H -u 1000 alham && \
     chown alham data/movies.json && \
     chmod 770 data/movies.json
