@@ -37,4 +37,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           # file: app/Dockerfile
           pull: true
+          no-cache: true
+          no-cache-filters: true
 ...
