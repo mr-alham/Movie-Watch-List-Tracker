@@ -146,14 +146,15 @@ def health():
 
     return "Hola! My Love, I am still Alive.", 200
 
+
 @app.route("/movies/json")
 def movies_json():
     """returns available movies with attributes as a json file"""
 
-    movies_json = jsonify(load_movies())
-    print(movies_json)
+    mvis_json = jsonify(load_movies())
+    print(mvis_json)
 
-    return movies_json, 200
+    return mvis_json, 200
 
 
 if __name__ == "__main__":
