@@ -39,4 +39,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: Dockerfile
           pull: true
+      - name: echo
+        run: echo "This is pwd of something $(pwd)"
+
 ...
