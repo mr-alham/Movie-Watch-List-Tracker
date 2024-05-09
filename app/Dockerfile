@@ -6,11 +6,11 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-USER alham
-
 EXPOSE 80
 
 RUN adduser -D -H -u 1000 alham
+
+USER alham
 
 RUN chown alham data/movies.json
 
