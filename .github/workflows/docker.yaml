@@ -35,12 +35,15 @@ jobs:
       - name: checkout the repository
         uses: actions/checkout@v4
 
+      - name: change current working directory
+        run: cd app
+
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
         with:
           push: true
           tags: mralham/movie_watch_list:latest
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/Dockerfile
+          file: Dockerfile
           pull: true
 ...
