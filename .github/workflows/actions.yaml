@@ -1,5 +1,5 @@
 ---
-name: Movie Watch List Tracker
+name: Super-Linter Code Quality checkpoint
 
 on:
   push:
