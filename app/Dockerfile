@@ -7,7 +7,7 @@ COPY . /app
 RUN echo "This is the PWD: $(pwd)"
 RUN echo "This is the ls  $(ls -lh)"
 
-RUN pip install --no-cache-dir -r app/requirements.txt && \
+RUN pip install --no-cache-dir -r requirements.txt && \
     adduser -D -H -u 1000 alham && \
     chown alham data/movies.json && \
     chmod 770 data/movies.json

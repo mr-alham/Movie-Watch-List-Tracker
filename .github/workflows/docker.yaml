@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: change current working directory
-        run: pwd
+        run: cd app
 
       - name: Build and Push the Image
         uses: docker/build-push-action@v5
@@ -44,6 +44,6 @@ jobs:
           push: true
           tags: mralham/movie_watch_list:latest
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/Dockerfile
+        #   file: app/Dockerfile
           pull: true
 ...
