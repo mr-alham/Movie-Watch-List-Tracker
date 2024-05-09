@@ -38,5 +38,5 @@ jobs:
           # file: app/Dockerfile
           pull: true
           no-cache: true
-          no-cache-filters: true
+          # no-cache-filters: true
 ...
