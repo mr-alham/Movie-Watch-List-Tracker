@@ -2,7 +2,7 @@ FROM python:3.11-alpine
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt && \
     adduser -D -H -u 1000 alham && \
