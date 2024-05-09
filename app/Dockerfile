@@ -1,10 +1,10 @@
 FROM python:3.11-alpine
 
+WORKDIR /app
+
 COPY . .
 
-RUN ls -lhR /
-
-WORKDIR /app
+RUN ls -lh /
 
 RUN pwd
 
