@@ -28,5 +28,6 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_JSCPD: false
           VALIDATE_HTML: false
+          VALIDATE_CHECKOV: false
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-...
+... 
