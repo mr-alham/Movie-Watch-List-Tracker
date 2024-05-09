@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 80
 
-RUN adduser -D -h /app alham
+RUN adduser -S -D -h /app alham
 
 RUN chown alham data/movies.json
 
