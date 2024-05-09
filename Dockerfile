@@ -1,11 +1,8 @@
-FROM python:alpine
+FROM python:3.11-alpine
 
 WORKDIR /app
 
 COPY . /app
-
-RUN echo "This is the PWD: $(pwd)"
-RUN echo "This is the ls  $(ls -lh)"
 
 RUN pip install --no-cache-dir -r app/requirements.txt && \
     adduser -D -H -u 1000 alham && \
