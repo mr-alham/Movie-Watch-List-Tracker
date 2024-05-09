@@ -120,7 +120,7 @@ def search_query():
 @app.route("/searched")
 def searched_movies():
     """handles the searching mechanism for the webpage"""
-    global searched_movie_list  # pylint: disable=W0601
+    global searched_movie_list  # pylint: disable=global-variable-not-assigned
 
     return jsonify(searched_movie_list)
 
