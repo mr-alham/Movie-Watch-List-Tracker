@@ -2,6 +2,8 @@ FROM python:3.11-alpine
 
 COPY . .
 
+WORKDIR /app
+
 RUN pwd
 
 RUN ls -lh
